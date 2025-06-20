@@ -1,5 +1,5 @@
 # Discord bot data grabber
-## 輸入你的dc bot token來取得機器人所在的伺服器及資訊
+輸入你的dc bot token來取得機器人所在的伺服器及資訊
 ## 可用指令
 - `help` 查看所有可用的指令
 - `guilds` 取得機器人所在的所有伺服器(包含id、人數)
