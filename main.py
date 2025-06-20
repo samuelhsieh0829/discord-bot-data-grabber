@@ -3,7 +3,7 @@ from discord.ext import tasks
 import aioconsole
 
 client = discord.Client(intents=discord.Intents.all())
-cmd_list = ["help", "guilds", "channels ", "members ",]
+cmd_list = ["help", "guilds", "channels ", "members ", "messages ", "exit"]
 colors = {"reset": "\033[0m", "blue": "\033[94m", "green": "\033[92m", "red": "\033[91m", "yellow": "\033[93m", "purple": "\033[95m", "cyan": "\033[96m"}
 
 def colorful_print(raw_text:str, *text_with_color:str, color:str|list="blue"):
@@ -19,7 +19,7 @@ def colorful_print(raw_text:str, *text_with_color:str, color:str|list="blue"):
 @tasks.loop()
 async def cli():
     cmd = await aioconsole.ainput(">>> ")
-    if cmd == "exit":
+    if cmd == cmd_list[-1] or cmd == "exit":
         await client.close()
     elif cmd == "" or cmd == cmd_list[0]:
         print("Available commands:")
@@ -53,7 +53,7 @@ async def cli():
         else:
             print(f"Guild with ID {guild_id} not found.")
     # Get messages from a specific channel
-    elif cmd.startswith("messages "):
+    elif cmd.startswith(cmd_list[4]):
         parts = cmd.split(" ")
         if len(parts) < 3:
             print("Usage: messages <guild_id> <channel_id>")
